@@ -1,5 +1,6 @@
 let bg
 let starFill
+let angleOffsett = 0
 
 function setup() {
   createCanvas(400, 400)
@@ -21,13 +22,11 @@ function draw() {
 }
 
 // Task 1: parameterize this function for inner and outer radii and number of sides
-function drawStar( mx = width/2, my = height/2 ) {
-  let numberOfSides = 7
+// TASK 1 START
+function drawStar( mx = width/2, my = height/2, numberOfSides = 7, ir = 50, or = 100 ) {
   let numberOfPoints = numberOfSides * 2
-  let ir = 50
-  let or = 100
   let theta = 0
-  let dt = TWO_PI/numberOfPoints
+  let dt = TWO_PI / numberOfPoints
 
   beginShape()
   for( let i = 0; i < numberOfPoints; i++ ) {
@@ -39,6 +38,8 @@ function drawStar( mx = width/2, my = height/2 ) {
   } 
   endShape()
 }
+// END OF TASK 1
+
 
 function randomColor(avenues=true) {
   if( avenues ) {
