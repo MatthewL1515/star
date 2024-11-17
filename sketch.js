@@ -1,6 +1,6 @@
 let bg
 let starFill
-let angleOffsett = 0
+let star
 
 function setup() {
   createCanvas(400, 400)
@@ -8,6 +8,9 @@ function setup() {
   starFill = randomColor() 
   fill(starFill)
   noStroke() 
+  
+  // Create a star object with "breathing"
+  star = createBreathingStar(width / 2, height / 2, 50, 100, 7, 0.02)
 }
 
 function draw() {
@@ -18,7 +21,38 @@ function draw() {
   // Alternate Task 2: implement breathing of the inner and outer radii
   //   through the use of trigonometric functions (like sin or cos). Remember 
   //   that these functions, by default, are in radians [0,TWO_PI]
-  drawStar()
+  
+  showStar()
+}
+
+function showStar() {
+  updateStar(star)
+  displayStar(star)
+}
+
+function createBreathingStar (mx, my, minInnerRadius, maxOuterRadius, numSides, step) {
+  
+  return{
+    mx: mx,
+    my: my,
+    minInnerRadius: minInnerRadius,
+    maxOuterRadius: maxOuterRadius,
+    numSides: numSides,
+    step: step,
+    angle: 0,
+    ir: minInnerRadius,
+    or: maxOuterRadius
+  }
+}
+
+function updateStar(s) {
+  s.angle += s.step
+  s.ir = s.minInnerRadius + 10 * sin(s.angle)
+  s.or = s.maxOuterRadius + 20 * cos(s.angle)
+}
+
+function displayStar(s) {
+  drawStar(s.mx, s.my, s.numberOfSides, s.ir, s.or)
 }
 
 // Task 1: parameterize this function for inner and outer radii and number of sides
