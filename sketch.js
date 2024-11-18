@@ -22,12 +22,8 @@ function draw() {
   //   through the use of trigonometric functions (like sin or cos). Remember 
   //   that these functions, by default, are in radians [0,TWO_PI]
   
-  showStar()
-}
-
-function showStar() {
   updateStar(star)
-  displayStar(star)
+  drawStar(100,100,5,20,40)
 }
 
 function createBreathingStar (mx, my, minInnerRadius, maxOuterRadius, numSides, step) {
@@ -49,11 +45,11 @@ function updateStar(s) {
   s.angle += s.step
   s.ir = s.minInnerRadius + 10 * sin(s.angle)
   s.or = s.maxOuterRadius + 20 * cos(s.angle)
+  
+  drawStar(s.mx, s.my, s.numberOfSides, s.ir, s.or)
+
 }
 
-function displayStar(s) {
-  drawStar(s.mx, s.my, s.numberOfSides, s.ir, s.or)
-}
 
 // Task 1: parameterize this function for inner and outer radii and number of sides
 // TASK 1 START
